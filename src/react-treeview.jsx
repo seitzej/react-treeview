@@ -1,24 +1,17 @@
-import React, {PropTypes} from 'react';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-const TreeView = React.createClass({
-  propTypes: {
-    collapsed: PropTypes.bool,
-    defaultCollapsed: PropTypes.bool,
-    nodeLabel: PropTypes.node.isRequired,
-    className: PropTypes.string,
-    itemClassName: PropTypes.string,
-  },
-
+export default class TreeView extends Component {
   getInitialState() {
     return {collapsed: this.props.defaultCollapsed};
-  },
+  }
 
   handleClick(...args) {
     this.setState({collapsed: !this.state.collapsed});
     if (this.props.onClick) {
       this.props.onClick(...args);
     }
-  },
+  }
 
   render() {
     const {
@@ -55,7 +48,13 @@ const TreeView = React.createClass({
         </div>
       </div>
     );
-  },
-});
+  }
+}
 
-export default TreeView;
+TreeView.propTypes = {
+  collapsed: PropTypes.bool,
+  defaultCollapsed: PropTypes.bool,
+  nodeLabel: PropTypes.node.isRequired,
+  className: PropTypes.string,
+  itemClassName: PropTypes.string,
+};
